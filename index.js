@@ -1,7 +1,7 @@
 const mineflayer = require('mineflayer');
 const config = require('./config.json');
 require('console-stamp')(console, {
-	format: ':date(mm/dd/yyyy HH:MM:ss)',
+    format: ':date(mm/dd/yyyy HH:MM:ss)',
 });
 require('dotenv').config();
 const env = process.env
@@ -40,6 +40,17 @@ function createBot() {
 
     bot.once('spawn', () => {
         console.log(`Connected.`);
+        bot.addChatPatternSet(
+            'PRIVATE_MESSAGE',
+            [/^From (?:\[(.+\+?\+?)\] )?(.+): (.+)$/],
+            { parse: true }
+        );
+
+        bot.addChatPatternSet(
+            'PARTY_INVITE',
+            [/(?:\[(.+\+?\+?)\] )?(.+) has invited you to join their party!/],
+            { parse: true }
+        )
     });
 
     bot.on('message', (msg) => {
@@ -62,17 +73,6 @@ function createBot() {
             createBot();
         }
     })
-    bot.addChatPatternSet(
-        'PRIVATE_MESSAGE',
-        [/^From (?:\[(.+\+?\+?)\] )?(.+): (.+)$/],
-        { parse: true }
-    );
-
-    bot.addChatPatternSet(
-        'PARTY_INVITE',
-        [/(?:\[(.+\+?\+?)\] )?(.+) has invited you to join their party!/],
-        { parse: true }
-    )
 
     bot.on('chat:PRIVATE_MESSAGE', async ([
         [rank, username, message]
