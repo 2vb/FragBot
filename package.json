@@ -1,13 +1,13 @@
 {
   "name": "fragbot-rewrite",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple dungeons fragbot",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "author": "twovb",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "console-stamp": "^3.1.1",
     "dotenv": "^16.1.4",
