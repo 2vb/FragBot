@@ -31,7 +31,6 @@ function createBot() {
         host: "proxy.hypixel.net",
         version: '1.8.9',
         username: process.env.EMAIL,
-        password: process.env.PASSWORD,
         auth: 'microsoft',
     });
 
